@@ -6,14 +6,16 @@ import { addtodo } from '../redux/actions/addToDo';
 import { useSelector } from 'react-redux';
 function Form() {
 const {todos} = useSelector(state => state)
+
    const [todo, setTodo] = useState('');
 
    const dispatch = useDispatch();
 
-   const handleAddTodo = ()=>{
-    dispatch(addtodo({id: todos.length+1, todo}))
+   const handleAddTodo = (e)=>{
+       e.preventDefault();
+    dispatch(addtodo({id: todos.length+1, todo, completed:false}))
    }
-
+console.log(todos)
     return (
         <div>
             <h1>My to-do list</h1>

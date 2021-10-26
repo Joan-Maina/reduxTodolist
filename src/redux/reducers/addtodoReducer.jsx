@@ -1,4 +1,5 @@
-import { ADDTODO, REMOVETODO } from "../types";
+import { completed } from "../actions/addToDo";
+import { ADDTODO, REMOVETODO, COMPLETED } from "../types";
 
 const initialState = {todos: []};
 
@@ -12,8 +13,18 @@ const addtodoReducer = (state = initialState, action) => {
         case REMOVETODO:
             return {
                 ...state,
-                todos: [...state.todos.filter(todo=>todo.id !== action.id)]
-            }
+                todos: [...state.todos.filter(({id}) => id !== action.id)]
+            }      
+        case COMPLETED:
+                return{
+                    ...state,
+                    todos: state.todos.map(todo=> {
+                        if(todo.id === action.id){
+                            todo.completed = !todo.completed
+                        }
+                        return todo
+                    })
+                }
         default:
             return state;
     }

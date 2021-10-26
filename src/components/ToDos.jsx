@@ -1,21 +1,23 @@
 import React from 'react';
 import '../App.css';
-import { useSelector , useEffect} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Todo from './Todo';
 
-function ToDo({todos}) {
-useEffect(() => {
-    const state = useSelector(state => state);
-}, [])
-    console.log(todos);
+function ToDo() {
 
-    return (
-        <div>
-   {todos.map((todo) => (
-              <Todo key = {todo.id} todo={todo} />
-            ))} 
-        </div>
-    )
+    const state = useSelector(state => state);
+
+    return(
+        <>
+    {state.todos.length > 0 ?
+       state.todos.map((todo,index) => (
+                  <Todo key = {index} todo={todo} />
+                ))
+        :
+        <h5>no to-dos to show</h5>
+    }
+    </>
+    ) 
 }
 
 export default ToDo
