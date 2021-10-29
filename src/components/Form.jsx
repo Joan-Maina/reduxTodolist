@@ -14,7 +14,9 @@ const {todos} = useSelector(state => state)
    const handleAddTodo = (e)=>{
        e.preventDefault();
     dispatch(addtodo({id: todos.length+1, todo, completed:false}))
+    setTodo('')
    }
+//    setTodo('')
 console.log(todos)
     return (
         <div>
